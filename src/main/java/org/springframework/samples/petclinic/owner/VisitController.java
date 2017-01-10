@@ -67,7 +67,7 @@ class VisitController {
      * @return Pet
      */
     @ModelAttribute("visit")
-    public Visit loadPetWithVisit(@PathVariable("petId") int petId, Map<String, Object> model) {
+    public Visit loadPetWithVisit(@PathVariable("petId") String petId, Map<String, Object> model) {
         Pet pet = this.pets.findById(petId);
         model.put("pet", pet);
         Visit visit = new Visit();
@@ -77,7 +77,7 @@ class VisitController {
 
     // Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
     @RequestMapping(value = "/owners/*/pets/{petId}/visits/new", method = RequestMethod.GET)
-    public String initNewVisitForm(@PathVariable("petId") int petId, Map<String, Object> model) {
+    public String initNewVisitForm(@PathVariable("petId") String petId, Map<String, Object> model) {
         return "pets/createOrUpdateVisitForm";
     }
 

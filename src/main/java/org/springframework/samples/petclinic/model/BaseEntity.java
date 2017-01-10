@@ -15,8 +15,8 @@
  */
 package org.springframework.samples.petclinic.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import java.util.UUID;
+
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -29,14 +29,20 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    protected String id;
 
-    public Integer getId() {
+    public BaseEntity() {
+    	setId(UUID.randomUUID().toString().replaceAll("-", ""));
+	}
+    
+    public String getId() {
+//    	if(id==null){
+//    		return UUID.randomUUID().toString().replaceAll("-", "");
+//    	}
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

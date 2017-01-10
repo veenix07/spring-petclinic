@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import org.assertj.core.util.Lists;
 import org.junit.Before;
@@ -38,8 +39,8 @@ import org.springframework.test.web.servlet.MockMvc;
                             type = FilterType.ASSIGNABLE_TYPE))
 public class PetControllerTests {
 
-    private static final int TEST_OWNER_ID = 1;
-    private static final int TEST_PET_ID = 1;
+    private static final String TEST_OWNER_ID = "f8f3bbc46c5f418fb190cec056f2ce2c";
+    private static final String TEST_PET_ID = "7e14f69d366442749654c24e494117ee";
 
 
     @Autowired
@@ -54,10 +55,12 @@ public class PetControllerTests {
     @Before
     public void setup() {
         PetType cat = new PetType();
-        cat.setId(3);
+        cat.setId("4b29d18d26134f86a5de89ce1744385a");
         cat.setName("hamster");
         given(this.pets.findPetTypes()).willReturn(Lists.newArrayList(cat));
-        given(this.owners.findById(TEST_OWNER_ID)).willReturn(new Owner());
+        Owner owner = new Owner();
+        owner.setId(TEST_OWNER_ID);
+        given(this.owners.findById(TEST_OWNER_ID)).willReturn(owner);
         given(this.pets.findById(TEST_PET_ID)).willReturn(new Pet());
 
     }

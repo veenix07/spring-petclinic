@@ -29,7 +29,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(VisitController.class)
 public class VisitControllerTests {
 
-    private static final int TEST_PET_ID = 1;
+    private static final String TEST_PET_ID = "7e14f69d366442749654c24e494117ee";
 
     @Autowired
     private MockMvc mockMvc;
